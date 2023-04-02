@@ -1,9 +1,10 @@
 import axios from "axios";
+import {RAPID_API_KEY, JSEARCH_HOST} from '@env';
 
 const JSearchHeaders = {
   headers: {
-    "X-RapidAPI-Key": process.env.RAPID_API_KEY,
-    "X-RapidAPI-Host": process.env.JSEARCH_HOST,
+    "X-RapidAPI-Key": RAPID_API_KEY,
+    "X-RapidAPI-Host": JSEARCH_HOST,
   },
 };
 
