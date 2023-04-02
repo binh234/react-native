@@ -22,13 +22,11 @@ const Company = ({ companyLogo, jobTitle, companyName, location }) => {
         <Text style={styles.jobTitle}>{jobTitle}</Text>
       </View>
       <View style={styles.companyInfoBox}>
-        <Text style={styles.companyName}>
-          {companyName} /
-        </Text>
+        <Text style={styles.companyName}>{companyName} /</Text>
         <View style={styles.locationBox}>
           <Image
             source={icons.location}
-            resizeMode='contain'
+            resizeMode="contain"
             style={styles.locationImage}
           />
           <Text style={styles.locationName}>{location}</Text>

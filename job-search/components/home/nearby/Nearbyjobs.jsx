@@ -30,15 +30,20 @@ const Nearbyjobs = () => {
       </View>
       <View style={styles.cardsContainer}>
         {isLoading ? (
-          <ActivityIndicator size='large' color={COLORS.primary} />
+          <ActivityIndicator size="large" color={COLORS.primary} />
         ) : error ? (
           <Text>{error}</Text>
         ) : (
           <FlatList
             data={data}
-            renderItem={({item}) => <NearbyJobCard job={item} handleNavigate={() => router.push(`/job-detail/${job.job_id}`)} />}
+            renderItem={({ item }) => (
+              <NearbyJobCard
+                job={item}
+                handleNavigate={() => router.push(`/job-detail/${job.job_id}`)}
+              />
+            )}
             keyExtractor={(job) => `nearby-job-${job.job_id}`}
-            contentContainerStyle={{columnGap: SIZES.medium}}
+            contentContainerStyle={{ columnGap: SIZES.medium }}
             nestedScrollEnabled
           />
         )}

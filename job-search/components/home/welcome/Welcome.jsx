@@ -31,7 +31,7 @@ const Welcome = () => {
             style={styles.searchInput}
             value={searchTerm}
             onChange={(text) => setSearchTerm(text)}
-            placeholder='What are you looking for?'
+            placeholder="What are you looking for?"
           />
         </View>
         <TouchableOpacity
@@ -44,7 +44,7 @@ const Welcome = () => {
         >
           <Image
             source={icons.search}
-            resizeMode='contain'
+            resizeMode="contain"
             style={styles.searchBtnImage}
           />
         </TouchableOpacity>

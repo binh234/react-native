@@ -68,12 +68,12 @@ const JobDetails = () => {
           headerLeft: () => (
             <ScreenHeaderBtn
               iconUrl={icons.left}
-              dimension='60%'
+              dimension="60%"
               handlePress={() => router.back()}
             />
           ),
           headerRight: () => (
-            <ScreenHeaderBtn iconUrl={icons.share} dimension='60%' />
+            <ScreenHeaderBtn iconUrl={icons.share} dimension="60%" />
           ),
           headerTitle: "",
         }}
@@ -86,7 +86,7 @@ const JobDetails = () => {
           }
         >
           {isLoading ? (
-            <ActivityIndicator size='large' color={COLORS.primary} />
+            <ActivityIndicator size="large" color={COLORS.primary} />
           ) : error ? (
             <Text>Something went wrong</Text>
           ) : data.length === 0 ? (
@@ -109,7 +109,12 @@ const JobDetails = () => {
             </View>
           )}
         </ScrollView>
-        <JobFooter url={data[0]?.job_google_link ?? 'https://careers.google.com/jobs/results'} />
+        <JobFooter
+          url={
+            data[0]?.job_google_link ??
+            "https://careers.google.com/jobs/results"
+          }
+        />
       </>
     </SafeAreaView>
   );
