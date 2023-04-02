@@ -17,8 +17,8 @@ import {
   Specifics,
 } from "../../components";
 import { COLORS, icons, SIZES } from "../../constants";
-import useFetch from "../../hooks/useFetch";
-import styles from "../../components/common/header/screenheader.style";
+import useSWR from "swr";
+import fetcher, { getJSearchOptions } from "../../utils";
 
 const tabs = ["About", "Qualification", "Responsibilities"];
 
@@ -27,11 +27,18 @@ const JobDetails = () => {
   const router = useRouter();
   const [refreshing, setRefreshing] = useState(false);
   const [activeTab, setActiveTab] = useState(tabs[0]);
-  const { data, isLoading, error, refetch } = useFetch("job-details", {
-    job_id: params.id,
-  });
+  const { data, isLoading, error, mutate } = useSWR(
+    getJSearchOptions("job-details", {
+      job_id: params.id,
+    }),
+    fetcher
+  );
 
-  const onRefresh = () => {};
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    mutate();
+    setRefreshing(false);
+  });
 
   const displayTabContent = useCallback(() => {
     switch (activeTab) {
@@ -68,12 +75,12 @@ const JobDetails = () => {
           headerLeft: () => (
             <ScreenHeaderBtn
               iconUrl={icons.left}
-              dimension="60%"
+              dimension='60%'
               handlePress={() => router.back()}
             />
           ),
           headerRight: () => (
-            <ScreenHeaderBtn iconUrl={icons.share} dimension="60%" />
+            <ScreenHeaderBtn iconUrl={icons.share} dimension='60%' />
           ),
           headerTitle: "",
         }}
@@ -86,7 +93,7 @@ const JobDetails = () => {
           }
         >
           {isLoading ? (
-            <ActivityIndicator size="large" color={COLORS.primary} />
+            <ActivityIndicator size='large' color={COLORS.primary} />
           ) : error ? (
             <Text>Something went wrong</Text>
           ) : data.length === 0 ? (
