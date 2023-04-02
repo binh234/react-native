@@ -16,7 +16,9 @@ const jobTypes = ["Full-time", "Part-time", "Contractor"];
 
 const Welcome = () => {
   const router = useRouter();
+  const [searchTerm, setSearchTerm] = useState("");
   const [activeJobType, setActiveJobType] = useState(jobTypes[0]);
+
   return (
     <View>
       <View style={styles.container}>
@@ -27,12 +29,19 @@ const Welcome = () => {
         <View style={styles.searchWrapper}>
           <TextInput
             style={styles.searchInput}
-            value=''
-            onChange={() => {}}
+            value={searchTerm}
+            onChange={(text) => setSearchTerm(text)}
             placeholder='What are you looking for?'
           />
         </View>
-        <TouchableOpacity style={styles.searchBtn} onPress={() => {}}>
+        <TouchableOpacity
+          style={styles.searchBtn}
+          onPress={() => {
+            if (searchTerm) {
+              router.push(`/search/${searchTerm}`);
+            }
+          }}
+        >
           <Image
             source={icons.search}
             resizeMode='contain'
@@ -54,8 +63,8 @@ const Welcome = () => {
               <Text style={styles.tabText(activeJobType, item)}>{item}</Text>
             </TouchableOpacity>
           )}
-          keyExtractor={item => item}
-          contentContainerStyle={{columnGap: SIZES.small}}
+          keyExtractor={(item) => item}
+          contentContainerStyle={{ columnGap: SIZES.small }}
           horizontal
         />
       </View>
