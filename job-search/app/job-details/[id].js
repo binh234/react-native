@@ -41,29 +41,35 @@ const JobDetails = () => {
   });
 
   const displayTabContent = useCallback(() => {
-    switch (activeTab) {
-      case tabs[0]:
-        return (
-          <JobAbout info={data[0].job_description ?? "No data provided"} />
-        );
-      case tabs[1]:
-        return (
-          <Specifics
-            title={tabs[1]}
-            points={data[0].job_hightlights?.Qualifications ?? ["N/A"]}
-          />
-        );
-      case tabs[2]:
-        return (
-          <Specifics
-            title={tabs[2]}
-            points={data[0].job_hightlights?.Responsibilities ?? ["N/A"]}
-          />
-        );
-      default:
-        break;
+    if (data?.length > 0) {
+      switch (activeTab) {
+        case tabs[0]:
+          return (
+            <JobAbout info={data[0].job_description ?? "No data provided"} />
+          );
+        case tabs[1]:
+          return (
+            <Specifics
+              title={tabs[1]}
+              points={data[0].job_hightlights?.Qualifications ?? ["N/A"]}
+            />
+          );
+        case tabs[2]:
+          return (
+            <Specifics
+              title={tabs[2]}
+              points={data[0].job_hightlights?.Responsibilities ?? ["N/A"]}
+            />
+          );
+        default:
+          break;
+      }
     }
-  }, [activeTab]);
+  }, [activeTab, data]);
+
+  if (!data && isLoading) {
+    return <ActivityIndicator size='large' color={COLORS.primary} />
+  }
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
@@ -96,7 +102,7 @@ const JobDetails = () => {
             <ActivityIndicator size='large' color={COLORS.primary} />
           ) : error ? (
             <Text>Something went wrong</Text>
-          ) : data.length === 0 ? (
+          ) : data?.length === 0 ? (
             <Text>Can't find this job</Text>
           ) : (
             <View style={{ padding: SIZES.medium, paddingBottom: 100 }}>

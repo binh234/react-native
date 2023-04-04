@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     marginTop: SIZES.small / 1.5,
   },
   infoContainer: {
-    marginTop: SIZES.large,
+    marginTop: SIZES.medium,
   },
   jobName: (selectedJob, item) => ({
     fontSize: SIZES.large,
@@ -44,9 +44,9 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "center",
   },
-  publisher: (selectedJob) => ({
+  publisher: (selectedJob, item) => ({
     fontSize: SIZES.medium - 2,
-    fontFamily: FONT.bold,
+    fontFamily: FONT.regular,
     color: selectedJob === item.job_id ? COLORS.white : COLORS.primary,
   }),
   location: {

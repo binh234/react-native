@@ -8,7 +8,7 @@ const JSearchHeaders = {
   },
 };
 
-export function getJSearchOptions(endpoint, query) {
+export function getJSearchOptions(endpoint, query, method="GET") {
   return {
     ...JSearchHeaders,
     method: "GET",
@@ -28,6 +28,8 @@ export const checkImageURL = (url) => {
   }
 };
 
-export default async function fetcher(options) {
-  return axios.get(options).then(res => res.data.data)
+export default function fetcher(options) {
+  return axios(options).then(res => {
+    return res.data.data
+  })
 }

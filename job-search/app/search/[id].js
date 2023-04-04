@@ -24,8 +24,8 @@ const JobSearch = () => {
   // The API URL includes the page index, which is a React state.
   const { data, error, isLoading } = useSWR(
     getJSearchOptions("search", {
-      query: query,
-      page: pageIndex + 1,
+      query: params.id,
+      page: page + 1,
     }),
     fetcher
   );

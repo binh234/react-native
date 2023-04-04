@@ -57,7 +57,6 @@ const Popularjobs = () => {
             keyExtractor={(item, index) => item?.job_id || index}
             contentContainerStyle={{ columnGap: SIZES.medium }}
             horizontal
-            nestedScrollEnabled
           />
         )}
       </View>

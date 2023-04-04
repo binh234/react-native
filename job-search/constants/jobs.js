@@ -13,6 +13,8 @@ export const jobTitles = [
   "Associate Software Engineer",
   "AWS Developer",
   "Azure Developer",
+  "Backend Developer",
+  "Backend Enginner",
   "Big Data Engineer",
   "Bioinformatician",
   "Bioinformatics",

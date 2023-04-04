@@ -7,8 +7,11 @@ import {
   Nearbyjobs,
   Popularjobs,
   ScreenHeaderBtn,
+  VirtualizedScrollView,
   Welcome,
 } from "../components";
+
+
 
 const Home = () => {
   return (
@@ -26,14 +29,14 @@ const Home = () => {
           headerTitle: "",
         }}
       />
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <VirtualizedScrollView showsVerticalScrollIndicator={false}>
         <View style={{ flex: 1, padding: SIZES.medium }}>
           <Welcome />
 
           <Popularjobs />
           <Nearbyjobs />
         </View>
-      </ScrollView>
+      </VirtualizedScrollView>
     </SafeAreaView>
   );
 };

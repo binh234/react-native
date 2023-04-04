@@ -1,24 +1,30 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   ActivityIndicator,
   FlatList,
+  ScrollView,
   Text,
   TouchableOpacity,
   View,
 } from "react-native";
 import { useRouter } from "expo-router";
+import useSWR from "swr";
 
 import styles from "./nearbyjobs.style";
 import { COLORS, SIZES } from "../../../constants";
 import NearbyJobCard from "../../common/cards/nearby/NearbyJobCard";
-import useFetch from "../../../hooks/useFetch";
+import fetcher, { getJSearchOptions } from "../../../utils";
 
 const Nearbyjobs = () => {
   const router = useRouter();
-  const { data, isLoading, error } = useFetch("search", {
-    query: "React developer",
-    num_pages: 1,
-  });
+  const { data, isLoading, error } = useSWR(
+    getJSearchOptions("search", {
+      query: "React developer",
+      num_pages: 1,
+    }),
+    fetcher
+  );
+  // console.log(data)
 
   return (
     <View style={styles.container}>
@@ -39,12 +45,11 @@ const Nearbyjobs = () => {
             renderItem={({ item }) => (
               <NearbyJobCard
                 job={item}
-                handleNavigate={() => router.push(`/job-detail/${job.job_id}`)}
+                handleNavigate={() => router.push(`/job-details/${item.job_id}`)}
               />
             )}
-            keyExtractor={(job) => `nearby-job-${job.job_id}`}
-            contentContainerStyle={{ columnGap: SIZES.medium }}
-            nestedScrollEnabled
+            keyExtractor={(item) => `nearby-job-${item.job_id}`}
+            contentContainerStyle={{ padding: SIZES.medium, rowGap: SIZES.medium }}
           />
         )}
       </View>
