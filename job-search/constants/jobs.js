@@ -1,4 +1,8 @@
 export const jobTitles = [
+  "Full=time job",
+  "Part-time job",
+  "Remote job",
+  "Hybrid job",
   ".Net Developer",
   "Android Developer",
   "AI Developer",

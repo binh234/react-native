@@ -1,5 +1,6 @@
 import axios from "axios";
-import {RAPID_API_KEY, JSEARCH_HOST} from '@env';
+import { RAPID_API_KEY, JSEARCH_HOST } from "@env";
+import { jobTitles } from "../constants/jobs";
 
 const JSearchHeaders = {
   headers: {
@@ -8,13 +9,18 @@ const JSearchHeaders = {
   },
 };
 
-export function getJSearchOptions(endpoint, query, method="GET") {
+export function getJSearchOptions(endpoint, query, method = "GET") {
   return {
     ...JSearchHeaders,
     method: "GET",
     url: `https://jsearch.p.rapidapi.com/${endpoint}`,
     params: { ...query },
   };
+}
+
+export function getRandomJobTitle() {
+  const randomIndex = Math.floor(Math.random() * jobTitles.length);
+  return jobTitles[randomIndex];
 }
 
 export const checkImageURL = (url) => {
@@ -29,7 +35,7 @@ export const checkImageURL = (url) => {
 };
 
 export default function fetcher(options) {
-  return axios(options).then(res => {
-    return res.data.data
-  })
+  return axios(options).then((res) => {
+    return res.data.data;
+  });
 }
