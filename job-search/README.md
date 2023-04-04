@@ -2,9 +2,14 @@
 
 Simple Job Search for jobs posted on LinkedIn, Indeed, Glassdoor, ZipRecruiter, BeBee and many others.
 
-![home](demo/home.jpg)
+<div>
+    <img width="30%" src="demo/home.jpg" alt="home" />
+    <img width="30%" src="demo/detail.jpg" alt="detail" />
+    <img width="30%" src="demo/search.jpg" alt="search" />
+</div>
+<!-- ![home](demo/home.jpg)
 ![detail](demo/detail.jpg)
-![search](demo/search.jpg)
+![search](demo/search.jpg) -->
 
 **Technologies**:
 
